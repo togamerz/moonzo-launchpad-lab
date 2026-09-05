@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChainRouteImport } from './routes/chain'
+import { Route as MoonzoRouteImport } from './routes/moonzo'
+import { Route as PheraRouteImport } from './routes/phera'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChainRoute = ChainRouteImport.update({
+  id: '/chain',
+  path: '/chain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoonzoRoute = MoonzoRouteImport.update({
+  id: '/moonzo',
+  path: '/moonzo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PheraRoute = PheraRouteImport.update({
+  id: '/phera',
+  path: '/phera',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chain': typeof ChainRoute
+  '/moonzo': typeof MoonzoRoute
+  '/phera': typeof PheraRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chain': typeof ChainRoute
+  '/moonzo': typeof MoonzoRoute
+  '/phera': typeof PheraRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chain': typeof ChainRoute
+  '/moonzo': typeof MoonzoRoute
+  '/phera': typeof PheraRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/chain' | '/moonzo' | '/phera'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/chain' | '/moonzo' | '/phera'
+  id: '__root__' | '/' | '/chain' | '/moonzo' | '/phera'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChainRoute: typeof ChainRoute
+  MoonzoRoute: typeof MoonzoRoute
+  PheraRoute: typeof PheraRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chain': {
+      id: '/chain'
+      path: '/chain'
+      fullPath: '/chain'
+      preLoaderRoute: typeof ChainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/moonzo': {
+      id: '/moonzo'
+      path: '/moonzo'
+      fullPath: '/moonzo'
+      preLoaderRoute: typeof MoonzoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/phera': {
+      id: '/phera'
+      path: '/phera'
+      fullPath: '/phera'
+      preLoaderRoute: typeof PheraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChainRoute: ChainRoute,
+  MoonzoRoute: MoonzoRoute,
+  PheraRoute: PheraRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
