@@ -11,8 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChainRouteImport } from './routes/chain'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MoonzoRouteImport } from './routes/moonzo'
 import { Route as PheraRouteImport } from './routes/phera'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,6 +26,21 @@ const IndexRoute = IndexRouteImport.update({
 const ChainRoute = ChainRouteImport.update({
   id: '/chain',
   path: '/chain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoonzoRoute = MoonzoRouteImport.update({
@@ -34,39 +53,85 @@ const PheraRoute = PheraRouteImport.update({
   path: '/phera',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chain': typeof ChainRoute
+  '/community': typeof CommunityRoute
+  '/faq': typeof FaqRoute
+  '/legal': typeof LegalRoute
   '/moonzo': typeof MoonzoRoute
   '/phera': typeof PheraRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chain': typeof ChainRoute
+  '/community': typeof CommunityRoute
+  '/faq': typeof FaqRoute
+  '/legal': typeof LegalRoute
   '/moonzo': typeof MoonzoRoute
   '/phera': typeof PheraRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chain': typeof ChainRoute
+  '/community': typeof CommunityRoute
+  '/faq': typeof FaqRoute
+  '/legal': typeof LegalRoute
   '/moonzo': typeof MoonzoRoute
   '/phera': typeof PheraRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chain' | '/moonzo' | '/phera'
+  fullPaths:
+    | '/'
+    | '/chain'
+    | '/community'
+    | '/faq'
+    | '/legal'
+    | '/moonzo'
+    | '/phera'
+    | '/roadmap'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chain' | '/moonzo' | '/phera'
-  id: '__root__' | '/' | '/chain' | '/moonzo' | '/phera'
+  to:
+    | '/'
+    | '/chain'
+    | '/community'
+    | '/faq'
+    | '/legal'
+    | '/moonzo'
+    | '/phera'
+    | '/roadmap'
+  id:
+    | '__root__'
+    | '/'
+    | '/chain'
+    | '/community'
+    | '/faq'
+    | '/legal'
+    | '/moonzo'
+    | '/phera'
+    | '/roadmap'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChainRoute: typeof ChainRoute
+  CommunityRoute: typeof CommunityRoute
+  FaqRoute: typeof FaqRoute
+  LegalRoute: typeof LegalRoute
   MoonzoRoute: typeof MoonzoRoute
   PheraRoute: typeof PheraRoute
+  RoadmapRoute: typeof RoadmapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,6 +150,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChainRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/moonzo': {
       id: '/moonzo'
       path: '/moonzo'
@@ -99,14 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PheraRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChainRoute: ChainRoute,
+  CommunityRoute: CommunityRoute,
+  FaqRoute: FaqRoute,
+  LegalRoute: LegalRoute,
   MoonzoRoute: MoonzoRoute,
   PheraRoute: PheraRoute,
+  RoadmapRoute: RoadmapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
