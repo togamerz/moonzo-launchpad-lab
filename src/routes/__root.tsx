@@ -81,8 +81,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "MOONZO — Meme Energy. Community Power. Future Legacy." },
+      {
+        name: "description",
+        content:
+          "MOONZO is a community-driven meme coin launched through PHERA on Robinhood Chain. Explore the mission, arcade games, meme lab, and roadmap.",
+      },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Lovable App" },
       { property: "og:description", content: "Lovable Generated Project" },
