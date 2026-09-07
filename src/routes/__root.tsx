@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteStateProvider, useSiteState } from "@/lib/site-state";
+import { Intro } from "@/components/Intro";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 function NotFoundComponent() {
   return (
@@ -77,11 +81,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "MOONZO — Meme Energy. Community Power. Future Legacy." },
+      {
+        name: "description",
+        content:
+          "MOONZO is a community-driven meme coin launched through PHERA on Robinhood Chain. Explore the mission, arcade games, meme lab, and roadmap.",
+      },
+      { name: "author", content: "MOONZO" },
+      { property: "og:title", content: "MOONZO — Meme Energy. Community Power. Future Legacy." },
+      {
+        property: "og:description",
+        content:
+          "A community-driven meme coin launched through PHERA on Robinhood Chain — memes, games, and the journey to the moon.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -91,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
